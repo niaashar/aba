@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — ABA_pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="dashboard-client.html" class="logo">
+                <img src="images/Лого.png" alt="ABA_pro" class="logo-img">
+                <span class="logo-text">ABA_pro</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="dashboard-client.html" class="nav-link active">Кабинет</a></li>
+                <li><a href="index.html" class="nav-link">Сайт</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link">🚪 Выход</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>🧩 Личный кабинет</h1>
+                <p class="user-info" id="clientName">Иванова Мария | client@aba-pro.ru</p>
+            </div>
+
+            <!-- ВКЛАДКИ -->
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="my-status">📊 Мой статус</button>
+                <button class="tab-btn" data-tab="meetings">📅 Встречи</button>
+                <button class="tab-btn" data-tab="documents">📄 Мои документы</button>
+                <button class="tab-btn" data-tab="messages">✉️ Сообщения</button>
+            </div>
+
+            <!-- СТАТУС -->
+            <div class="tab-content active" id="my-status-tab">
+                <h2>📊 Текущий статус работы</h2>
+                <div class="status-card">
+                    <div class="status-header">
+                        <span class="status-badge status-consultation">💬 Консультация</span>
+                        <span class="status-date">Начало: 15.01.2026</span>
+                    </div>
+                    <div class="status-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                        <p>25% пути пройдено</p>
+                    </div>
+                    <div class="status-steps">
+                        <div class="step completed">✅ Прояснение</div>
+                        <div class="step active">🔄 Погружение</div>
+                        <div class="step">⏳ Программа</div>
+                        <div class="step">⏳ Сопровождение</div>
+                    </div>
+                </div>
+                
+                <div class="next-steps">
+                    <h3>Следующие шаги</h3>
+                    <ul>
+                        <li>📅 Записаться на интенсив в семье</li>
+                        <li>📝 Заполнить карту запроса</li>
+                        <li>📞 Обсудить формат сопровождения</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ВСТРЕЧИ -->
+            <div class="tab-content" id="meetings-tab">
+                <h2>📅 Доступные встречи</h2>
+                <div class="meetings-list-client" id="clientMeetings">
+                    <!-- Встречи загружаются через JS -->
+                </div>
+            </div>
+
+            <!-- ДОКУМЕНТЫ -->
+            <div class="tab-content" id="documents-tab">
+                <h2>📄 Мои документы</h2>
+                <div class="documents-list-client" id="clientDocuments">
+                    <!-- Документы загружаются через JS -->
+                </div>
+            </div>
+
+            <!-- СООБЩЕНИЯ -->
+            <div class="tab-content" id="messages-tab">
+                <h2>✉️ Сообщения от специалиста</h2>
+                <div class="messages-list" id="clientMessages">
+                    <!-- Сообщения загружаются через JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="data/database.js"></script>
+    <script src="dashboard-client.js"></script>
+</body>
+</html>

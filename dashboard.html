@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — ABA_pro</title>
+    <script>
+        // Перенаправление в зависимости от роли
+        window.addEventListener('DOMContentLoaded', function() {
+            const userRole = localStorage.getItem('userRole');
+            const userEmail = localStorage.getItem('userEmail');
+            
+            // Если пользователь не авторизован
+            if (!userRole || !userEmail) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Перенаправляем на соответствующий дашборд
+            if (userRole === 'owner') {
+                window.location.href = 'dashboard-owner.html';
+            } else if (userRole === 'client') {
+                window.location.href = 'dashboard-client.html';
+            } else {
+                // Если роль неизвестна, выходим
+                localStorage.clear();
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--color-bg);">
+        <div style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🧩</div>
+            <p style="font-size: 1.2rem; color: var(--color-text);">Загрузка личного кабинета...</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — ABA_pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images\ЛОГОТИП №2.png" alt="ABA_pro" class="logo-img">
+                <span class="logo-text">ABA_pro</span>
+            </a>
+            <ul class="nav-menu">
+    <li><a href="index.html" class="nav-link active">Главная</a></li>
+    <li><a href="services.html" class="nav-link">Услуги</a></li>
+    <li><a href="program.html" class="nav-link">Как проходит работа</a></li>
+    <li><a href="about.html" class="nav-link">О специалисте</a></li>
+    <li><a href="faq.html" class="nav-link">Частые вопросы</a></li>
+    <li><a href="login.html" class="btn btn-primary">🔐 Войти</a></li>
+</ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Контакты</h1>
+            <p class="breadcrumb"><a href="index.html">Главная</a> / Контакты</p>
+        </div>
+    </section>
+
+    <section class="contacts-section">
+        <div class="container">
+            <div class="contacts-form-wrapper full-width">
+                <form class="contact-form" id="contactForm">
+                    <h2 class="form-title">С чего начнём?</h2>
+                    <p class="form-subtitle">Давайте соберём первый пазл</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Имя 👤</label>
+                            <input type="text" id="name" name="name" placeholder="Как к вам можно обращаться" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Контакт 📩</label>
+                            <input type="text" id="contact" name="contact" placeholder="Email / Телефон" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="child-age">Про ребёнка 🧒 (необязательно)</label>
+                        <input type="text" id="child-age" name="child-age" placeholder="Возраст ребёнка">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="request">Суть запроса ❓</label>
+                        <textarea id="request" name="request" rows="4" placeholder="Опишите ситуацию..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Какой формат вам ближе? 🧭</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="format" value="Разовая консультация">
+                                <span>Разовая консультация</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="format" value="Интенсив в семье">
+                                <span>Интенсив в семье</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="format" value="Индивидуальная программа">
+                                <span>Индивидуальная программа</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="format" value="Сопровождение">
+                                <span>Сопровождение</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="format" value="Не знаю, с чего начать">
+                                <span>Не знаю, с чего начать</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="boundaries-block">
+                        <p>🧠 <strong>Важно о границах:</strong></p>
+                        <p>Я работаю с ограниченным количеством семей, чтобы сохранять внимание и качество сопровождения.</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full btn-large">Сделать первый шаг</button>
+                </form>
+
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <h3>Запрос получен 🌍🧩</h3>
+                    <p>Спасибо за доверие.<br>Я внимательно изучу ваш запрос и свяжусь с вами в ближайшее время.</p>
+                    <p class="micro-sign">Пазлы начинают собираться</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images\ЛОГОТИП №2.png" alt="ABA_pro" class="logo-img">
+                    <span class="logo-text">ABA_pro</span>
+                </div>
+                <div class="footer-specialist">
+                    <p>Специалист: <strong>Слесь Ирина Анатольевна</strong></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ABA_pro. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const contact = document.getElementById('contact').value;
+                const childAge = document.getElementById('child-age').value || 'Не указан';
+                const request = document.getElementById('request').value || 'Не описан';
+                
+                // Собираем выбранные форматы
+                const formats = [];
+                document.querySelectorAll('input[name="format"]:checked').forEach(checkbox => {
+                    formats.push(checkbox.nextElementSibling.textContent);
+                });
+                const formatText = formats.length > 0 ? formats.join(', ') : 'Не выбрано';
+                
+                if (!name || !contact) {
+                    showNotification('Пожалуйста, заполните имя и контакт', 'error');
+                    return;
+                }
+                
+                // Формируем сообщение для Telegram
+                const message = `
+🧩 <b>Новая заявка ABA_pro</b>
+👤 <b>Имя:</b> ${name}
+📩 <b>Контакт:</b> ${contact}
+🧒 <b>Про ребёнка:</b> ${childAge}
+📝 <b>Суть запроса:</b>
+${request}
+🧭 <b>Формат:</b> ${formatText}
+                `.trim();
+                
+                // Отправляем в Telegram
+                const BOT_TOKEN = '8680722545:AAF5rArSkP4qmXbG5L153igYE-mlIxBygQY';
+                const CHAT_ID = '1066370255';
+                
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Отправка...';
+                submitBtn.disabled = true;
+                
+                try {
+                    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            chat_id: CHAT_ID,
+                            text: message,
+                            parse_mode: 'HTML'
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        // Показываем сообщение об успехе
+                        contactForm.style.display = 'none';
+                        if (successMessage) {
+                            successMessage.style.display = 'block';
+                            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    } else {
+                        showNotification('Ошибка при отправке. Попробуйте позже.', 'error');
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('Ошибка при отправке. Попробуйте позже.', 'error');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) { 
+                existingNotification.remove(); 
+            }
+            
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                color: white;
+                font-weight: 600;
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                max-width: 400px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                background: ${type === 'success' ? 'linear-gradient(135deg, #B8D4C4 0%, #9FB8C4 100%)' : 'linear-gradient(135deg, #D4A494 0%, #C49484 100%)'}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => { 
+                    notification.remove(); 
+                }, 300);
+            }, 5000);
+        }
+
+        // Add animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

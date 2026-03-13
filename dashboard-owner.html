@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кабинет специалиста — ABA_pro</title>
+    
+    <!-- Предотвращение мигания при загрузке -->
+    <style>
+        body { opacity: 0; transition: opacity 0.1s ease; }
+        body.loaded { opacity: 1; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ===== НАВИГАЦИЯ ===== -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="dashboard-owner.html" class="logo">
+                <img src="images/Лого.png" alt="ABA_pro" class="logo-img">
+                <span class="logo-text">ABA_pro</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="dashboard-owner.html" class="nav-link active">Кабинет</a></li>
+                <li><a href="index.html" class="nav-link">Сайт</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link">🚪 Выход</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>🧩 Кабинет специалиста</h1>
+                <p class="user-info">Слесь Ирина Анатольевна | owner@aba-pro.ru</p>
+            </div>
+
+            <!-- ===== ВКЛАДКИ ===== -->
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" onclick="showTab('clients')" id="tab-clients">👥 Клиенты</button>
+                <button class="tab-btn" onclick="showTab('meetings')" id="tab-meetings">📅 Встречи</button>
+                <button class="tab-btn" onclick="showTab('documents')" id="tab-documents">📄 Документы</button>
+                <button class="tab-btn" onclick="showTab('templates')" id="tab-templates">✉️ Шаблоны</button>
+            </div>
+
+            <!-- ===== ВКЛАДКА: КЛИЕНТЫ ===== -->
+            <div id="clients-tab" class="tab-content active">
+                <div class="tab-header">
+                    <h2>Мои клиенты</h2>
+                    <button class="btn btn-primary" onclick="openModal('addClientModal')">+ Добавить клиента</button>
+                </div>
+                <div id="clientsList">
+                    <p style="color: var(--color-text-light); text-align: center; padding: 40px;">Загрузка...</p>
+                </div>
+            </div>
+
+            <!-- ===== ВКЛАДКА: ВСТРЕЧИ ===== -->
+            <div id="meetings-tab" class="tab-content">
+                <div class="tab-header">
+                    <h2>📅 Тематические встречи</h2>
+                    <button class="btn btn-primary" onclick="openModal('addMeetingModal')">+ Создать встречу</button>
+                </div>
+                <div id="meetingsList">
+                    <p style="color: var(--color-text-light); text-align: center; padding: 40px;">Загрузка...</p>
+                </div>
+            </div>
+
+            <!-- ===== ВКЛАДКА: ДОКУМЕНТЫ ===== -->
+            <div id="documents-tab" class="tab-content">
+                <div class="tab-header">
+                    <h2>📄 Документы клиентов</h2>
+                    <button class="btn btn-primary" onclick="openModal('uploadDocumentModal')">📤 Загрузить документ</button>
+                </div>
+                <div id="documentsList">
+                    <p style="color: var(--color-text-light); text-align: center; padding: 40px;">Пока нет документов</p>
+                </div>
+            </div>
+
+            <!-- ===== ВКЛАДКА: ШАБЛОНЫ ===== -->
+            <div id="templates-tab" class="tab-content">
+                <h2>✉️ Шаблоны писем</h2>
+                <div class="templates-grid">
+                    <!-- Шаблон 1 -->
+                    <div class="template-card">
+                        <h3>1️⃣ После первичного контакта</h3>
+                        <textarea class="template-text" id="template1">Здравствуйте,
+
+Спасибо за ваше обращение и доверие.
+Я внимательно ознакомлюсь с вашим запросом и свяжусь с вами в ближайшее время.
+
+Если потребуется уточнение деталей, я задам вопросы отдельно.
+
+С уважением,
+[Ваше имя]
+
+Пазлы начинают собираться 🧩</textarea>
+                        <button class="btn btn-secondary" onclick="copyTemplate('template1')">📋 Копировать</button>
+                    </div>
+
+                    <!-- Шаблон 2 -->
+                    <div class="template-card">
+                        <h3>2️⃣ Итоги встречи</h3>
+                        <textarea class="template-text" id="template2">Здравствуйте,
+
+Подводя итог нашей работы на этом этапе:
+— мы прояснили запрос,
+— обозначили ключевые направления,
+— наметили возможные дальнейшие шаги.
+
+На данный момент этап завершён.
+
+Если вы решите продолжить работу в формате программы или сопровождения, дайте знать — мы обсудим возможные варианты.
+
+С уважением,
+[Ваше имя]</textarea>
+                        <button class="btn btn-secondary" onclick="copyTemplate('template2')">📋 Копировать</button>
+                    </div>
+
+                    <!-- Шаблон 3 -->
+                    <div class="template-card">
+                        <h3>3️⃣ Приглашение к сопровождению</h3>
+                        <textarea class="template-text" id="template3">Здравствуйте,
+
+На текущем этапе я вижу, что дальнейшая работа может быть более устойчивой при наличии сопровождения — для удержания ритма, анализа динамики и своевременной корректировки.
+
+Сопровождение не является обязательным шагом. Вы можете продолжать работу самостоятельно или с другими специалистами.
+
+Если формат сопровождения откликается и кажется полезным, мы можем обсудить условия и ритм работы.
+
+С уважением,
+[Ваше имя]</textarea>
+                        <button class="btn btn-secondary" onclick="copyTemplate('template3')">📋 Копировать</button>
+                    </div>
+
+                    <!-- Шаблон 4 -->
+                    <div class="template-card">
+                        <h3>4️⃣ Завершение этапа</h3>
+                        <textarea class="template-text" id="template4">Здравствуйте,
+
+Мы завершаем текущий этап сопровождения.
+За это время была проделана важная работа, и сейчас у вас есть необходимые ориентиры для дальнейшего движения.
+
+На этом этапе моя роль завершена.
+
+Если в будущем возникнет потребность вернуться к консультации, программе или сопровождению, вы можете обратиться повторно.
+
+Благодарю за доверие и совместный путь.
+
+С уважением,
+[Ваше имя]</textarea>
+                        <button class="btn btn-secondary" onclick="copyTemplate('template4')">📋 Копировать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО: ДОБАВИТЬ КЛИЕНТА ===== -->
+    <div id="addClientModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addClientModal')">&times;</span>
+            <h2>Добавить клиента</h2>
+            <form id="addClientForm" onsubmit="addClient(event)">
+                <div class="form-group">
+                    <label>Имя клиента *</label>
+                    <input type="text" id="clientName" required placeholder="Иванова Мария">
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="clientEmail" required placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" id="clientPhone" placeholder="+7 (999) 999-99-99">
+                </div>
+                <div class="form-group">
+                    <label>Информация о ребёнке</label>
+                    <input type="text" id="clientChildInfo" placeholder="Возраст, особенности">
+                </div>
+                <div class="form-group">
+                    <label>Статус</label>
+                    <select id="clientStatus">
+                        <option value="new">🆕 Новый</option>
+                        <option value="consultation">💬 Консультация</option>
+                        <option value="program">📋 Программа</option>
+                        <option value="support">🤝 Сопровождение</option>
+                        <option value="completed">✅ Завершён</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>📝 Комментарии</label>
+                    <textarea id="clientComments" rows="3" placeholder="Заметки о клиенте..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">✅ Добавить клиента</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО: СОЗДАТЬ ВСТРЕЧУ ===== -->
+    <div id="addMeetingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addMeetingModal')">&times;</span>
+            <h2>📅 Создать встречу</h2>
+            <form id="addMeetingForm" onsubmit="addMeeting(event)">
+                <div class="form-group">
+                    <label>Тема встречи *</label>
+                    <input type="text" id="meetingTitle" required placeholder="Поведение как коммуникация">
+                </div>
+                <div class="form-group">
+                    <label>Дата *</label>
+                    <input type="date" id="meetingDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Время *</label>
+                    <input type="time" id="meetingTime" required>
+                </div>
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea id="meetingDesc" rows="3" placeholder="Описание встречи..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Ссылка на Zoom/Skype</label>
+                    <input type="url" id="meetingLink" placeholder="https://zoom.us/j/...">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">✅ Создать встречу</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО: ЗАГРУЗИТЬ ДОКУМЕНТ ===== -->
+    <div id="uploadDocumentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('uploadDocumentModal')">&times;</span>
+            <h2>📤 Загрузить документ</h2>
+            <form id="uploadDocumentForm" onsubmit="uploadDocument(event)">
+                <div class="form-group">
+                    <label>Название документа *</label>
+                    <input type="text" id="docName" required placeholder="Информированное согласие">
+                </div>
+                <div class="form-group">
+                    <label>Выберите клиента *</label>
+                    <select id="docClient" required>
+                        <option value="">-- Выберите клиента --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Тип документа</label>
+                    <select id="docType">
+                        <option value="consent">📋 Информированное согласие</option>
+                        <option value="contract">📄 Договор</option>
+                        <option value="program">📝 Программа</option>
+                        <option value="report">📊 Отчёт</option>
+                        <option value="other">📎 Другое</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Файл *</label>
+                    <input type="file" id="docFile" required accept=".pdf,.doc,.docx,.jpg,.png">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">📤 Загрузить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/Лого.png" alt="ABA_pro" class="footer-logo-img">
+                    <span class="footer-logo-text">ABA_pro</span>
+                </div>
+                <div class="footer-specialist">
+                    <p>Специалист:</p>
+                    <p><strong>Слесь Ирина Анатольевна</strong></p>
+                    <p>Поведенческий аналитик, куратор кейсов</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ABA_pro. Все права защищены. | 🧩 Каждый пазл важен</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    const currentUser = JSON.parse(localStorage.getItem('aba_user'));
+    
+    // Проверка авторизации
+    if (!currentUser || currentUser.role !== 'owner') {
+        window.location.href = 'login.html';
+    }
+    
+    // Инициализация хранилищ
+    ['aba_users', 'aba_meetings', 'aba_documents', 'aba_messages'].forEach(key => {
+        if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify([]));
+    });
+    
+    // Показываем страницу после загрузки
+    window.addEventListener('load', () => document.body.classList.add('loaded'));
+    
+    // ===== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК =====
+    function showTab(tabName) {
+        // Скрыть все вкладки
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        // Показать выбранную
+        document.getElementById(tabName + '-tab').classList.add('active');
+        document.getElementById('tab-' + tabName).classList.add('active');
+        
+        // Загрузить данные
+        if (tabName === 'clients') loadClients();
+        if (tabName === 'meetings') loadMeetings();
+        if (tabName === 'documents') loadDocuments();
+    }
+    
+    // ===== МОДАЛЬНЫЕ ОКНА =====
+    function openModal(id) {
+        document.getElementById(id).style.display = 'block';
+        if (id === 'uploadDocumentModal') loadClientsToSelect();
+    }
+    
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+        const form = document.getElementById(id.replace('Modal', 'Form'));
+        if (form) form.reset();
+    }
+    
+    // Закрытие при клике вне модального окна
+    window.onclick = (e) => {
+        if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+    };
+    
+    // ===== КЛИЕНТЫ =====
+    function addClient(e) {
+        e.preventDefault();
+        const newClient = {
+            id: 'client' + Date.now(),
+            name: document.getElementById('clientName').value,
+            email: document.getElementById('clientEmail').value,
+            phone: document.getElementById('clientPhone').value,
+            childInfo: document.getElementById('clientChildInfo').value,
+            status: document.getElementById('clientStatus').value,
+            comments: document.getElementById('clientComments').value,
+            role: 'client',
+            registeredAt: new Date().toISOString()
+        };
+        
+        const users = JSON.parse(localStorage.getItem('aba_users'));
+        users.push(newClient);
+        localStorage.setItem('aba_users', JSON.stringify(users));
+        
+        closeModal('addClientModal');
+        loadClients();
+        alert('✅ Клиент "' + newClient.name + '" успешно добавлен!');
+    }
+    
+    function loadClients() {
+        const users = JSON.parse(localStorage.getItem('aba_users'));
+        const clients = users.filter(u => u.role === 'client');
+        const container = document.getElementById('clientsList');
+        
+        if (clients.length === 0) {
+            container.innerHTML = '<p style="color: var(--color-text-light); text-align: center; padding: 40px;">Пока нет клиентов</p>';
+            return;
+        }
+        
+        container.innerHTML = clients.map(client => {
+            const statusMap = {
+                'new': { bg: 'var(--color-sand-light)', text: '🆕 Новый' },
+                'consultation': { bg: 'var(--color-blue-light)', text: '💬 Консультация' },
+                'program': { bg: 'var(--color-green-light)', text: '📋 Программа' },
+                'support': { bg: 'var(--color-purple-light)', text: '🤝 Сопровождение' },
+                'completed': { bg: 'var(--color-green)', text: '✅ Завершён' }
+            };
+            const status = statusMap[client.status] || statusMap['new'];
+            
+            return `
+            <div class="client-card">
+                <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 15px;">
+                    <div style="flex: 1;">
+                        <h3 style="margin: 0 0 10px 0;">${client.name}</h3>
+                        <p style="color: var(--color-text-light); margin: 5px 0;">📧 ${client.email}</p>
+                        ${client.phone ? `<p style="color: var(--color-text-light); margin: 5px 0;">📱 ${client.phone}</p>` : ''}
+                        ${client.childInfo ? `<p style="color: var(--color-text-light); margin: 5px 0;">🧒 ${client.childInfo}</p>` : ''}
+                        <p style="color: var(--color-text-light); font-size: 0.85rem; margin: 10px 0;">📅 Регистрация: ${new Date(client.registeredAt).toLocaleDateString('ru')}</p>
+                        ${client.comments ? `
+                        <div style="margin-top: 15px; padding: 12px; background: var(--color-sand-light); border-radius: 8px; border-left: 4px solid var(--color-blue);">
+                            <strong style="color: var(--color-text); display: block; margin-bottom: 5px;">📝 Комментарии:</strong>
+                            <p style="color: var(--color-text); margin: 0; white-space: pre-wrap; line-height: 1.6;">${client.comments}</p>
+                        </div>` : ''}
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="display: inline-block; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; background: ${status.bg}; margin-bottom: 10px;">${status.text}</span>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;">
+                            <button class="btn btn-secondary btn-small" onclick="openSendMessageModal('${client.id}', '${client.name}')">✉️ Сообщение</button>
+                            <button class="btn btn-secondary btn-small" onclick="changeClientStatus('${client.id}')">✏️ Статус</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+    
+    function changeClientStatus(clientId) {
+        const newStatus = prompt('Введите новый статус:\n- new (Новый)\n- consultation (Консультация)\n- program (Программа)\n- support (Сопровождение)\n- completed (Завершён)', 'consultation');
+        if (newStatus) {
+            const users = JSON.parse(localStorage.getItem('aba_users'));
+            const client = users.find(u => u.id === clientId);
+            if (client) {
+                client.status = newStatus;
+                localStorage.setItem('aba_users', JSON.stringify(users));
+                loadClients();
+                alert('✅ Статус обновлён!');
+            }
+        }
+    }
+    
+    // ===== ВСТРЕЧИ =====
+    function addMeeting(e) {
+        e.preventDefault();
+        const newMeeting = {
+            id: 'meeting' + Date.now(),
+            title: document.getElementById('meetingTitle').value,
+            date: document.getElementById('meetingDate').value,
+            time: document.getElementById('meetingTime').value,
+            description: document.getElementById('meetingDesc').value,
+            link: document.getElementById('meetingLink').value,
+            createdAt: new Date().toISOString()
+        };
+        
+        const meetings = JSON.parse(localStorage.getItem('aba_meetings'));
+        meetings.push(newMeeting);
+        localStorage.setItem('aba_meetings', JSON.stringify(meetings));
+        
+        closeModal('addMeetingModal');
+        loadMeetings();
+        alert('✅ Встреча "' + newMeeting.title + '" успешно создана!');
+    }
+    
+    function loadMeetings() {
+        const meetings = JSON.parse(localStorage.getItem('aba_meetings'));
+        const container = document.getElementById('meetingsList');
+        
+        if (meetings.length === 0) {
+            container.innerHTML = '<p style="color: var(--color-text-light); text-align: center; padding: 40px;">Пока нет встреч</p>';
+            return;
+        }
+        
+        // Сортируем по дате
+        meetings.sort((a, b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time));
+        
+        container.innerHTML = meetings.map(meeting => `
+        <div class="meeting-card">
+            <h3 style="margin: 0 0 10px 0;">${meeting.title}</h3>
+            <p style="color: var(--color-text-light); margin: 5px 0;">📅 ${meeting.date} | ⏰ ${meeting.time}</p>
+            ${meeting.description ? `<p style="margin: 10px 0;">${meeting.description}</p>` : ''}
+            ${meeting.link ? `<a href="${meeting.link}" target="_blank" class="btn btn-primary" style="margin-top: 10px;">🔗 Подключиться</a>` : ''}
+        </div>`).join('');
+    }
+    
+    // ===== ДОКУМЕНТЫ =====
+    function loadClientsToSelect() {
+        const users = JSON.parse(localStorage.getItem('aba_users'));
+        const clients = users.filter(u => u.role === 'client');
+        const select = document.getElementById('docClient');
+        if (!select) return;
+        
+        select.innerHTML = '<option value="">-- Выберите клиента --</option>';
+        clients.forEach(client => {
+            const option = document.createElement('option');
+            option.value = client.id;
+            option.textContent = client.name;
+            select.appendChild(option);
+        });
+    }
+    
+    function uploadDocument(e) {
+        e.preventDefault();
+        const fileInput = document.getElementById('docFile');
+        const file = fileInput.files[0];
+        
+        if (!file) { alert('❌ Выберите файл'); return; }
+        if (file.size > 5 * 1024 * 1024) { alert('❌ Файл слишком большой. Максимум 5MB'); return; }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const newDocument = {
+                id: 'doc' + Date.now(),
+                name: document.getElementById('docName').value,
+                clientId: document.getElementById('docClient').value,
+                type: document.getElementById('docType').value,
+                fileName: file.name,
+                fileData: e.target.result,
+                uploadedAt: new Date().toISOString(),
+                uploadedBy: currentUser.name
+            };
+            
+            const documents = JSON.parse(localStorage.getItem('aba_documents'));
+            documents.push(newDocument);
+            localStorage.setItem('aba_documents', JSON.stringify(documents));
+            
+            closeModal('uploadDocumentModal');
+            loadDocuments();
+            alert('✅ Документ "' + newDocument.name + '" успешно загружен!');
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    function loadDocuments() {
+        const documents = JSON.parse(localStorage.getItem('aba_documents'));
+        const users = JSON.parse(localStorage.getItem('aba_users'));
+        const container = document.getElementById('documentsList');
+        
+        if (!container) return;
+        if (documents.length === 0) {
+            container.innerHTML = '<p style="color: var(--color-text-light); text-align: center; padding: 40px;">Пока нет документов</p>';
+            return;
+        }
+        
+        // Группируем по клиентам
+        const clientsDocs = {};
+        documents.forEach(doc => {
+            if (!clientsDocs[doc.clientId]) clientsDocs[doc.clientId] = [];
+            clientsDocs[doc.clientId].push(doc);
+        });
+        
+        const typeIcons = { 'consent': '📋', 'contract': '📄', 'program': '📝', 'report': '📊', 'other': '📎' };
+        const typeNames = { 'consent': 'Информированное согласие', 'contract': 'Договор', 'program': 'Программа', 'report': 'Отчёт', 'other': 'Другое' };
+        
+        let html = '';
+        Object.keys(clientsDocs).forEach(clientId => {
+            const client = users.find(u => u.id === clientId);
+            const clientName = client ? client.name : 'Неизвестный клиент';
+            
+            html += `<div class="client-card"><h3 style="margin-top: 0; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--color-sand-light);">👤 ${clientName}</h3><div style="display: grid; gap: 10px;">`;
+            
+            clientsDocs[clientId].forEach(doc => {
+                html += `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--color-bg); border-radius: 8px;">
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; margin-bottom: 4px;">${typeIcons[doc.type] || '📄'} ${doc.name}</div>
+                        <div style="font-size: 0.85rem; color: var(--color-text-light);">
+                            ${typeNames[doc.type] || 'Документ'} | 📅 ${new Date(doc.uploadedAt).toLocaleDateString('ru')}
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="${doc.fileData}" download="${doc.fileName}" class="btn btn-primary btn-small">⬇️ Скачать</a>
+                        <button class="btn btn-secondary btn-small" onclick="deleteDocument('${doc.id}')" style="background: var(--color-sand);">🗑️</button>
+                    </div>
+                </div>`;
+            });
+            html += '</div></div>';
+        });
+        
+        container.innerHTML = html;
+    }
+    
+    function deleteDocument(docId) {
+        if (confirm('Вы уверены, что хотите удалить этот документ?')) {
+            const documents = JSON.parse(localStorage.getItem('aba_documents'));
+            const filtered = documents.filter(d => d.id !== docId);
+            localStorage.setItem('aba_documents', JSON.stringify(filtered));
+            loadDocuments();
+            alert('✅ Документ удалён');
+        }
+    }
+    
+    // ===== ШАБЛОНЫ =====
+    function copyTemplate(id) {
+        const textarea = document.getElementById(id);
+        textarea.select();
+        document.execCommand('copy');
+        alert('✅ Шаблон скопирован!');
+    }
+    
+    // ===== СООБЩЕНИЯ =====
+    function openSendMessageModal(clientId, clientName) {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.display = 'block';
+        modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
+            <h2>✉️ Отправить сообщение</h2>
+            <p style="color: var(--color-text-light); margin-bottom: 20px;">Клиент: <strong>${clientName}</strong></p>
+            <form onsubmit="sendClientMessage(event, '${clientId}')">
+                <div class="form-group">
+                    <label>Тема</label>
+                    <input type="text" id="messageSubject" required placeholder="Тема сообщения">
+                </div>
+                <div class="form-group">
+                    <label>Сообщение</label>
+                    <textarea id="messageText" rows="5" required placeholder="Текст сообщения..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">📨 Отправить</button>
+            </form>
+        </div>`;
+        document.body.appendChild(modal);
+    }
+    
+    function sendClientMessage(e, clientId) {
+        e.preventDefault();
+        const newMessage = {
+            id: 'msg' + Date.now(),
+            clientId,
+            subject: document.getElementById('messageSubject').value,
+            text: document.getElementById('messageText').value,
+            from: 'owner',
+            fromName: currentUser.name,
+            sentAt: new Date().toISOString(),
+            read: false
+        };
+        
+        const messages = JSON.parse(localStorage.getItem('aba_messages') || '[]');
+        messages.push(newMessage);
+        localStorage.setItem('aba_messages', JSON.stringify(messages));
+        
+        e.target.closest('.modal').remove();
+        alert('✅ Сообщение отправлено!');
+    }
+    
+    // ===== ВЫХОД =====
+    function logout() {
+        localStorage.removeItem('aba_user');
+        window.location.href = 'login.html';
+    }
+    
+    // ===== ЗАГРУЗКА ПРИ СТАРТЕ =====
+    loadClients();
+    </script>
+</body>
+</html>

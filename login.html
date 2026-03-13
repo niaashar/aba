@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в личный кабинет — ABA_pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/ЛОГОТИП №2.png" alt="ABA_pro" class="logo-img">
+                <span class="logo-text">ABA_pro</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Главная</a></li>
+                <li><a href="services.html" class="nav-link">Услуги</a></li>
+                <li><a href="program.html" class="nav-link">Как проходит работа</a></li>
+                <li><a href="about.html" class="nav-link">О специалисте</a></li>
+                <li><a href="faq.html" class="nav-link">Частые вопросы</a></li>
+                <li><a href="contacts.html" class="btn btn-primary">📞 Контакты</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="login-section">
+        <div class="container">
+            <div class="login-wrapper">
+                <div class="login-card">
+                    <h1>🔐 Вход в кабинет</h1>
+                    <p class="login-subtitle">Для родителей и специалистов</p>
+                    
+                    <form class="login-form" id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Пароль</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="remember">
+                                <span>Запомнить меня</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full btn-large">Войти</button>
+                    </form>
+                    
+                    <div class="login-demo">
+                        <p><strong>📋 Демо-доступ для тестирования:</strong></p>
+                        <p><strong>Владелец:</strong> owner@aba-pro.ru / owner123</p>
+                        <p><strong>Клиент:</strong> client@aba-pro.ru / client123</p>
+                    </div>
+                    
+                    <div class="login-links">
+                        <a href="index.html" class="back-link">← Вернуться на главную</a>
+                        <p class="no-account">Нет аккаунта? <a href="contacts.html">Зарегистрироваться</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/ЛОГОТИП №2.png" alt="ABA_pro" class="footer-logo-img">
+                    <span class="footer-logo-text">ABA_pro</span>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-nav-title">Навигация</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="index.html" class="footer-nav-link">Главная</a></li>
+                        <li><a href="services.html" class="footer-nav-link">Услуги</a></li>
+                        <li><a href="program.html" class="footer-nav-link">Как проходит работа</a></li>
+                        <li><a href="about.html" class="footer-nav-link">О специалисте</a></li>
+                        <li><a href="faq.html" class="footer-nav-link">Частые вопросы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-specialist-card">
+                    <div class="specialist-card-content">
+                        <p class="specialist-label">Специалист:</p>
+                        <h3 class="specialist-name">Слесь Ирина Анатольевна</h3>
+                        <p class="specialist-role">Поведенческий аналитик, куратор кейсов</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ABA_pro. Все права защищены. | 🧩 Каждый пазл важен</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    // ===== ОБРАБОТКА ФОРМЫ ВХОДА =====
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Предотвращаем стандартную отправку формы
+        
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        
+        console.log('Попытка входа:', email); // Для отладки
+        
+        // Проверяем демо-доступ
+        if (email === 'owner@aba-pro.ru' && password === 'owner123') {
+            // Сохраняем данные владельца
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userRole', 'owner');
+            localStorage.setItem('userName', 'Слесь Ирина Анатольевна');
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            console.log('Вход выполнен: владелец');
+            
+            // Перенаправляем на dashboard-owner.html
+            window.location.href = 'dashboard-owner.html';
+            
+        } else if (email === 'client@aba-pro.ru' && password === 'client123') {
+            // Сохраняем данные клиента
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userRole', 'client');
+            localStorage.setItem('userName', 'Иванова Мария');
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            console.log('Вход выполнен: клиент');
+            
+            // Перенаправляем на dashboard-client.html
+            window.location.href = 'dashboard-client.html';
+            
+        } else {
+            // Ошибка входа
+            alert('❌ Неверный email или пароль.\n\nИспользуйте демо-доступ:\n👤 Владелец: owner@aba-pro.ru / owner123\n👤 Клиент: client@aba-pro.ru / client123');
+        }
+    });
+    
+    // Проверяем, если пользователь уже авторизован
+    window.addEventListener('DOMContentLoaded', function() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        const userRole = localStorage.getItem('userRole');
+        
+        if (isLoggedIn === 'true' && userRole) {
+            console.log('Пользователь уже авторизован:', userRole);
+            // Если уже авторизован, перенаправляем на нужный дашборд
+            if (userRole === 'owner') {
+                window.location.href = 'dashboard-owner.html';
+            } else if (userRole === 'client') {
+                window.location.href = 'dashboard-client.html';
+            }
+        }
+    });
+    </script>
+</body>
+</html>

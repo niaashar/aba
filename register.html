@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация — ABA_pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/Лого.png" alt="ABA_pro" class="logo-img">
+                <span class="logo-text">ABA_pro</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Главная</a></li>
+                <li><a href="login.html" class="btn btn-primary">Войти</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section style="padding: 120px 20px 50px; background: linear-gradient(135deg, #F0E8D8 0%, #D4E8DC 100%); min-height: 100vh;">
+        <div class="container">
+            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                <h1 style="text-align: center; margin-bottom: 10px;">🧩 Регистрация в ABA_pro</h1>
+                <p style="text-align: center; color: #718096; margin-bottom: 30px;">Создайте аккаунт для доступа к личному кабинету</p>
+                
+                <form id="registerForm">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600;">Ваше имя 👤</label>
+                        <input type="text" id="regName" required placeholder="Иванова Мария" style="width: 100%; padding: 12px; border: 2px solid #E8D5B7; border-radius: 8px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600;">Email 📩</label>
+                        <input type="email" id="regEmail" required placeholder="your@email.com" style="width: 100%; padding: 12px; border: 2px solid #E8D5B7; border-radius: 8px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600;">Телефон 📱</label>
+                        <input type="tel" id="regPhone" required placeholder="+7 (999) 999-99-99" style="width: 100%; padding: 12px; border: 2px solid #E8D5B7; border-radius: 8px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600;">Пароль 🔐</label>
+                        <input type="password" id="regPassword" required placeholder="Минимум 6 символов" minlength="6" style="width: 100%; padding: 12px; border: 2px solid #E8D5B7; border-radius: 8px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600;">Информация о ребёнке 🧒</label>
+                        <textarea id="regChildInfo" rows="3" placeholder="Имя, возраст, особенности развития..." style="width: 100%; padding: 12px; border: 2px solid #E8D5B7; border-radius: 8px;"></textarea>
+                    </div>
+                    
+                    <button type="submit" style="width: 100%; background: #9FB8C4; color: white; padding: 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1.1rem;">Зарегистрироваться</button>
+                </form>
+                
+                <div id="registerError" style="display: none; background: #FED7D7; color: #C53030; padding: 12px; border-radius: 8px; margin-top: 15px;"></div>
+                <div id="registerSuccess" style="display: none; background: #D4E8DC; color: #2F855A; padding: 12px; border-radius: 8px; margin-top: 15px;"></div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <p>Уже есть аккаунт? <a href="login.html" style="color: #9FB8C4; font-weight: 600;">Войти</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Инициализация базы пользователей
+    if (!localStorage.getItem('aba_users')) {
+        localStorage.setItem('aba_users', JSON.stringify([]));
+    }
+    
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('regName').value;
+        const email = document.getElementById('regEmail').value;
+        const phone = document.getElementById('regPhone').value;
+        const password = document.getElementById('regPassword').value;
+        const childInfo = document.getElementById('regChildInfo').value;
+        
+        const users = JSON.parse(localStorage.getItem('aba_users'));
+        
+        // Проверка на существующего пользователя
+        if (users.find(u => u.email === email)) {
+            document.getElementById('registerError').textContent = '❌ Пользователь с таким email уже существует';
+            document.getElementById('registerError').style.display = 'block';
+            return;
+        }
+        
+        // Создание нового пользователя
+        const newUser = {
+            id: 'client' + Date.now(),
+            name: name,
+            email: email,
+            phone: phone,
+            password: password,
+            childInfo: childInfo,
+            role: 'client',
+            registeredAt: new Date().toISOString(),
+            status: 'new'
+        };
+        
+        users.push(newUser);
+        localStorage.setItem('aba_users', JSON.stringify(users));
+        
+        // Автоматический вход
+        localStorage.setItem('aba_user', JSON.stringify({
+            id: newUser.id,
+            email: newUser.email,
+            role: 'client',
+            name: newUser.name
+        }));
+        
+        document.getElementById('registerSuccess').textContent = '✅ Регистрация успешна! Перенаправление...';
+        document.getElementById('registerSuccess').style.display = 'block';
+        
+        setTimeout(() => {
+            window.location.href = 'dashboard-client.html';
+        }, 1500);
+    });
+    </script>
+</body>
+</html>

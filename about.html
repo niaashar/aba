@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="О специалисте ABA_pro — Слесь Ирина Анатольевна">
+    <title>О специалисте — ABA_pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/ЛОГОТИП №2.png" alt="ABA_pro" class="logo-img">
+                <span class="logo-text">ABA_pro</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Главная</a></li>
+                <li><a href="services.html" class="nav-link">Услуги</a></li>
+                <li><a href="program.html" class="nav-link">Как проходит работа</a></li>
+                <li><a href="about.html" class="nav-link">О специалисте</a></li>
+                <li><a href="faq.html" class="nav-link">Частые вопросы</a></li>
+                <li><a href="login.html" class="btn btn-primary">🔐 Войти</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>О специалисте</h1>
+            <p class="breadcrumb"><a href="index.html">Главная</a> / О специалисте</p>
+        </div>
+    </section>
+
+    <section class="portfolio-hero">
+        <div class="container">
+            <div class="specialist-profile">
+                <div class="specialist-photo">
+                    <img src="images/Портфолио_ФИО.jpg" alt="Слесь Ирина Анатольевна">
+                </div>
+                <div class="specialist-info">
+                    <h2>Слесь Ирина Анатольевна</h2>
+                    <p class="specialist-role">Поведенческий аналитик, куратор кейсов</p>
+                    <p class="specialist-description">ABA-специалист. Работа направлена на помощь детям с аутизмом и их семьям. Цель работы — помочь ребёнку включиться в реальную жизнь.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">лет опыта</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">230+</div>
+                            <div class="stat-label">семей помогла</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-about">
+        <div class="container">
+            <div class="section-box">
+                <h2>Основные направления работы</h2>
+                <ul class="specialty-list">
+                    <li>Прикладной анализ поведения (ABA)</li>
+                    <li>Развитие навыков</li>
+                    <li>Работа с поведением</li>
+                    <li>Обучение родителей</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== БЛОК: СЕРТИФИКАТЫ И ДИПЛОМЫ ===== -->
+   <section class="portfolio-certificates-scroll">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Сертификаты и дипломы</h2>
+            <p class="section-subtitle">Подтверждение квалификации и непрерывное профессиональное развитие</p>
+        </div>
+        
+        <div class="certificates-scroll-wrapper">
+            <div class="certificates-scroll-track" id="certificatesTrack">
+                <!-- Диплом 2018 ЕКБ -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(0)">
+                    <div class="cert-photo">
+                        <img src="images/Диплом 2018 Екатеринбург.jpg" alt="Диплом о профессиональной переподготовке">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Диплом о профессиональной переподготовке</h3>
+                        <p class="cert-org">По программе "Логопедия"</p>
+                        <p class="cert-year">Уральский государственный педагогический университет</p>
+                        <p class="cert-year">2018</p>
+                    </div>
+                </div>
+
+                <!-- Диплом 2020 МСК -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(1)">
+                    <div class="cert-photo">
+                        <img src="images/Диплом 2020 Москва.jpg" alt="Диплом ABA-терапия">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Диплом о профессиональной переподготовке</h3>
+                        <p class="cert-org">По программе "Прикладной анализ поведения (ABA-терапия)"</p>
+                        <p class="cert-year">Институт прикладного анализа поведения</p>
+                        <p class="cert-year">2020</p>
+                    </div>
+                </div>
+
+                <!-- Сертификат ABA 2023 -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(2)">
+                    <div class="cert-photo">
+                        <img src="images/Сертификат Теория и практика ABA BCBA.jpg" alt="Теория и практика ABA">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об прохождении Онлайн курса "Теория и практика ABA"</h3>
+                        <p class="cert-org">Курс Ольги Шаповаловой, BCBA</p>
+                        <p class="cert-year">2023</p>
+                    </div>
+                </div>
+
+                <!-- Приложение №1 -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(3)">
+                    <div class="cert-photo">
+                        <img src="images/приложение к сертификату.jpg" alt="Приложение к сертификату №1">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Приложение к сертификату онлайн курса "Теория и практика ABA"</h3>
+                        <p class="cert-org">Курс Ольги Шаповаловой, BCBA</p>
+                        <p class="cert-year">2023</p>
+                    </div>
+                </div>
+
+                <!-- Приложение №2 -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(4)">
+                    <div class="cert-photo">
+                        <img src="images/приложение к сертификату2.jpg" alt="Приложение к сертификату №2">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Приложение к сертификату онлайн курса "Теория и практика ABA"</h3>
+                        <p class="cert-org">Курс Ольги Шаповаловой, BCBA</p>
+                        <p class="cert-year">2023</p>
+                    </div>
+                </div>
+
+                <!-- Сертификат Точное обучение 2024 -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(5)">
+                    <div class="cert-photo">
+                        <img src="images/Сертификат Ирина Слесь_page-0001.jpg" alt="Точное обучение">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат о прохождении онлайн тренинга "Точное обучение"</h3>
+                        <p class="cert-org">Курс Ольги Шаповаловой, BCBA</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 365.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(6)">
+                    <div class="cert-photo">
+                        <img src="images/365.jpg" alt="Туалетный тренинг">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Туалетный тренинг в домашних условиях"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 88.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(7)">
+                    <div class="cert-photo">
+                        <img src="images/88.jpg" alt="Социальные цепочки">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Построение социальных цепочек для детей с аутизмом"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2023</p>
+                    </div>
+                </div>
+
+                <!-- 111.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(8)">
+                    <div class="cert-photo">
+                        <img src="images/111.jpg" alt="Применение с детьми с РАС">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Применение с детьми с расстройством аутичного спектра"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 139.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(9)">
+                    <div class="cert-photo">
+                        <img src="images/139.jpg" alt="Эффективные способы обучения">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Самые эффективные способы обучения комплексным навыкам"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 161.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(10)">
+                    <div class="cert-photo">
+                        <img src="images/161.jpg" alt="6 методов коррекции">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "6 методов коррекции ошибки и как выбрать верный для моего ребенка"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 192.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(11)">
+                    <div class="cert-photo">
+                        <img src="images/192.jpg" alt="Стратегии предотвращения непослушания">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Стратегии, предотвращающие непослушание во время урока"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 197.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(12)">
+                    <div class="cert-photo">
+                        <img src="images/197..jpg" alt="Непонимающий речь ребенок">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Непонимающий речь ребенок: основные стратегии работы для запуска понимания речи"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 207.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(13)">
+                    <div class="cert-photo">
+                        <img src="images/207.jpg" alt="Причинно-следственные связи">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Формирование причинно-следственных связей и абстрактного мышления"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2023</p>
+                    </div>
+                </div>
+
+                <!-- 220.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(14)">
+                    <div class="cert-photo">
+                        <img src="images/220..jpg" alt="Использование лекарств">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Использование сильнодействующих лекарств для коррекции симптомов аутизма"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 228.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(15)">
+                    <div class="cert-photo">
+                        <img src="images/228.jpg" alt="Обучение имитации">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Последовательность и нюансы обучения имитации"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2023</p>
+                    </div>
+                </div>
+
+                <!-- 248.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(16)">
+                    <div class="cert-photo">
+                        <img src="images/248.jpg" alt="Тренинг с помощью Матрицы">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Получи Больше, Обучая Меньше: Тренинг с Помощью Матрицы"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 261.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(17)">
+                    <div class="cert-photo">
+                        <img src="images/261.jpg" alt="Слогострой">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Слогострой: Как справиться с плохим произношением слов у вашего ребенка"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 280.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(18)">
+                    <div class="cert-photo">
+                        <img src="images/280.jpg" alt="Многошаговые инструкции">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Выполнение многошаговых инструкций с подключением совместного контроля"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 292.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(19)">
+                    <div class="cert-photo">
+                        <img src="images/292.jpg" alt="Развитие социального взаимодействия">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Развитие социального взаимодействия должно быть основным вмешательством при аутизме"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+
+                <!-- 349.jpg -->
+                <div class="certificate-scroll-item" onclick="openCertificateModal(20)">
+                    <div class="cert-photo">
+                        <img src="images/349.jpg" alt="Взаимопонимание с ребенком">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Сертификат об участии "Как построить взаимопонимание между родителем/инструктором и ребенком с аутизмом"</h3>
+                        <p class="cert-org">Школа ABA Ольги Мелешкевич</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кнопки навигации -->
+            <button class="scroll-btn scroll-left" onclick="scrollCertificates(-1)">‹</button>
+            <button class="scroll-btn scroll-right" onclick="scrollCertificates(1)">›</button>
+        </div>
+        
+        <!-- Индикаторы -->
+        <div class="scroll-indicators" id="scrollIndicators"></div>
+        
+    </div>
+</section>
+
+    <!-- ... (остальной код без изменений) ... -->
+
+    <!-- Модальное окно для просмотра сертификатов -->
+    <div id="certificateModal" class="certificate-modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeCertificateModal()"></div>
+        <div class="modal-content-wrapper">
+            <button class="modal-close" onclick="closeCertificateModal()">✕</button>
+            <img id="modalImage" src="" alt="Сертификат" class="modal-image">
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-nav">
+                <button class="modal-btn modal-prev" onclick="changeCertificate(-1)">‹ Назад</button>
+                <button class="modal-btn modal-next" onclick="changeCertificate(1)">Вперёд ›</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- ===== СКРИПТ ГОРИЗОНТАЛЬНОГО СКРОЛЛА И МОДАЛЬНОГО ОКНА ===== -->
+    <script>
+    // ===== ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ СЕРТИФИКАТОВ =====
+    const track = document.getElementById('certificatesTrack');
+    const indicators = document.getElementById('scrollIndicators');
+    const items = document.querySelectorAll('.certificate-scroll-item');
+    let currentIndex = 0;
+
+    // Создаём индикаторы
+    items.forEach((_, index) => {
+        const indicator = document.createElement('div');
+        indicator.className = 'scroll-indicator' + (index === 0 ? ' active' : '');
+        indicator.onclick = () => scrollToIndex(index);
+        indicators.appendChild(indicator);
+    });
+
+    // Функция скролла
+    function scrollCertificates(direction) {
+        const itemWidth = items[0].offsetWidth + 24;
+        currentIndex += direction;
+        
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex > items.length - 1) currentIndex = items.length - 1;
+        
+        const scrollPosition = currentIndex * itemWidth;
+        track.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+        updateIndicators();
+    }
+
+    // Скролл к конкретному индексу
+    function scrollToIndex(index) {
+        currentIndex = index;
+        const itemWidth = items[0].offsetWidth + 24;
+        track.scrollTo({ left: currentIndex * itemWidth, behavior: 'smooth' });
+        updateIndicators();
+    }
+
+    // Обновление индикаторов
+    function updateIndicators() {
+        document.querySelectorAll('.scroll-indicator').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    // Обновление при скролле
+    track.addEventListener('scroll', () => {
+        const itemWidth = items[0].offsetWidth + 24;
+        const newIndex = Math.round(track.scrollLeft / itemWidth);
+        if (newIndex !== currentIndex) {
+            currentIndex = newIndex;
+            updateIndicators();
+        }
+    });
+
+    // Свайп на мобильных
+    let touchStartX = 0, touchEndX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+    track.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) scrollCertificates(diff > 0 ? 1 : -1);
+    });
+
+    // ===== МОДАЛЬНОЕ ОКНО ДЛЯ СЕРТИФИКАТОВ =====
+    let currentCertIndex = 0;
+    const certificates = [
+        { src: 'images/Диплом 2018 Екатеринбург.jpg', title: 'Диплом о профессиональной переподготовке - Логопедия (2018)' },
+        { src: 'images/Диплом 2020 Москва.jpg', title: 'Диплом о профессиональной переподготовке - ABA-терапия (2020)' },
+        { src: 'images/Сертификат Теория и практика ABA BCBA.jpg', title: 'Теория и практика ABA - Ольга Шаповалова (2023)' },
+        { src: 'images/приложение к сертификату.jpg', title: 'Приложение к сертификату №1 (2023)' },
+        { src: 'images/приложение к сертификату2.jpg', title: 'Приложение к сертификату №2 (2023)' },
+        { src: 'images/Сертификат Ирина Слесь_page-0001.jpg', title: 'Точное обучение - Ольга Шаповалова (2024)' },
+        { src: 'images/365.jpg', title: 'Туалетный тренинг в домашних условиях - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/88.jpg', title: 'Построение социальных цепочек для детей с аутизмом - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/111.jpg', title: 'Применение с детьми с расстройством аутичного спектра - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/139.jpg', title: 'Самые эффективные способы обучения комплексным навыкам - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/161.jpg', title: '6 методов коррекции ошибки - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/192.jpg', title: 'Стратегии, предотвращающие непослушание во время урока - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/197..jpg', title: 'Непонимающий речь ребенок: основные стратегии работы - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/207.jpg', title: 'Формирование причинно-следственных связей и абстрактного мышления - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/220..jpg', title: 'Использование сильнодействующих лекарств для коррекции симптомов аутизма - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/228.jpg', title: 'Последовательность и нюансы обучения имитации - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/248.jpg', title: 'Получи Больше, Обучая Меньше: Тренинг с Помощью Матрицы - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/261.jpg', title: 'Слогострой: Как справиться с плохим произношением слов - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/280.jpg', title: 'Выполнение многошаговых инструкций с подключением совместного контроля - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/292.jpg', title: 'Развитие социального взаимодействия должно быть основным вмешательством при аутизме - Школа ABA Ольги Мелешкевич' },
+        { src: 'images/349.jpg', title: 'Как построить взаимопонимание между родителем/инструктором и ребенком с аутизмом - Школа ABA Ольги Мелешкевич' }
+    ];
+
+    function openCertificateModal(index) {
+        currentCertIndex = index;
+        const modal = document.getElementById('certificateModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        
+        modalImg.src = certificates[index].src;
+        modalCaption.textContent = certificates[index].title;
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCertificateModal() {
+        const modal = document.getElementById('certificateModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function changeCertificate(direction) {
+        currentCertIndex += direction;
+        
+        if (currentCertIndex < 0) currentCertIndex = certificates.length - 1;
+        if (currentCertIndex >= certificates.length) currentCertIndex = 0;
+        
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        
+        modalImg.style.opacity = '0';
+        
+        setTimeout(() => {
+            modalImg.src = certificates[currentCertIndex].src;
+            modalCaption.textContent = certificates[currentCertIndex].title;
+            modalImg.style.opacity = '1';
+        }, 200);
+    }
+
+    // Закрытие по Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeCertificateModal();
+        if (e.key === 'ArrowLeft') changeCertificate(-1);
+        if (e.key === 'ArrowRight') changeCertificate(1);
+    });
+    </script>
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <!-- Логотип -->
+            <div class="footer-logo">
+                <img src="images/ЛОГОТИП №2.png" alt="ABA_pro" class="footer-logo-img">
+                <span class="footer-logo-text">ABA_pro</span>
+            </div>
+
+            <!-- Навигация -->
+            <div class="footer-nav">
+                <h4 class="footer-nav-title">Навигация</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html" class="footer-nav-link">Главная</a></li>
+                    <li><a href="services.html" class="footer-nav-link">Услуги</a></li>
+                    <li><a href="program.html" class="footer-nav-link">Как проходит работа</a></li>
+                    <li><a href="about.html" class="footer-nav-link">О специалисте</a></li>
+                    <li><a href="faq.html" class="footer-nav-link">Частые вопросы</a></li>
+                </ul>
+            </div>
+
+            <!-- Информация о специалисте -->
+            <div class="footer-specialist-card">
+                <div class="specialist-card-content">
+                    <p class="specialist-label">Специалист:</p>
+                    <h3 class="specialist-name">Слесь Ирина Анатольевна</h3>
+                    <p class="specialist-role">Поведенческий аналитик, куратор кейсов</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Копирайт -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 ABA_pro. Все права защищены. | 🧩 Каждый пазл важен</p>
+        </div>
+    </div>
+</footer><footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <!-- Логотип -->
+            <div class="footer-logo">
+                <img src="images/ЛОГОТИП №2.png" alt="ABA_pro" class="footer-logo-img">
+                <span class="footer-logo-text">ABA_pro</span>
+            </div>
+
+            <!-- Навигация -->
+            <div class="footer-nav">
+                <h4 class="footer-nav-title">Навигация</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html" class="footer-nav-link">Главная</a></li>
+                    <li><a href="services.html" class="footer-nav-link">Услуги</a></li>
+                    <li><a href="program.html" class="footer-nav-link">Как проходит работа</a></li>
+                    <li><a href="about.html" class="footer-nav-link">О специалисте</a></li>
+                    <li><a href="faq.html" class="footer-nav-link">Частые вопросы</a></li>
+                </ul>
+            </div>
+
+            <!-- Информация о специалисте -->
+            <div class="footer-specialist-card">
+                <div class="specialist-card-content">
+                    <p class="specialist-label">Специалист:</p>
+                    <h3 class="specialist-name">Слесь Ирина Анатольевна</h3>
+                    <p class="specialist-role">Поведенческий аналитик, куратор кейсов</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Копирайт -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 ABA_pro. Все права защищены. | 🧩 Каждый пазл важен</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

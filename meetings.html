@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тематические встречи — ABA_pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/ЛОГОТИП №2.png" alt="ABA_pro" class="logo-img">
+                <span class="logo-text">ABA_pro</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Главная</a></li>
+                <li><a href="services.html" class="nav-link">Услуги</a></li>
+                <li><a href="program.html" class="nav-link">Как проходит работа</a></li>
+                <li><a href="about.html" class="nav-link">О специалисте</a></li>
+                <li><a href="meetings.html" class="nav-link active">Тематические встречи</a></li>
+                <li><a href="faq.html" class="nav-link">Частые вопросы</a></li>
+                <li><a href="contacts.html" class="btn btn-primary">📞 Контакты</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>🧩 Тематические встречи</h1>
+            <p class="breadcrumb"><a href="index.html">Главная</a> / Тематические встречи</p>
+        </div>
+    </section>
+
+    <section class="meetings-section">
+        <div class="container">
+            <div class="meetings-intro">
+                <h2>Присоединяйтесь к нашим встречам</h2>
+                <p class="lead">Регулярные онлайн-встречи для родителей и специалистов. Обмен опытом, ответы на вопросы, разбор сложных случаев.</p>
+            </div>
+
+            <!-- Календарь Яндекс -->
+            <div class="calendar-section">
+                <h3>📅 Календарь встреч</h3>
+                <div class="calendar-wrapper">
+                    <iframe 
+                        src="https://calendar.yandex.ru/embed/week?&layer_ids=36502446&tz_id=Europe/Moscow&layer_names=ABA_pro%20Встречи" 
+                        width="100%" 
+                        height="450" 
+                        frameborder="0" 
+                        style="border: 1px solid #E8D5B7; border-radius: 12px;">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Список встреч -->
+            <div class="upcoming-meetings">
+                <h3>🎯 Ближайшие встречи</h3>
+                <div class="meetings-grid" id="meetingsGrid">
+                    <!-- Встречи будут загружены через JavaScript -->
+                    <div class="meeting-card loading">
+                        <p>Загрузка встреч...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meetings-cta">
+                <h3>Хотите участвовать?</h3>
+                <p>Запишитесь на встречу или задайте вопрос</p>
+                <a href="contacts.html" class="btn btn-primary btn-large">Записаться на встречу</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/ЛОГОТИП №2.png" alt="ABA_pro" class="footer-logo-img">
+                    <span class="footer-logo-text">ABA_pro</span>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-nav-title">Навигация</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="index.html" class="footer-nav-link">Главная</a></li>
+                        <li><a href="services.html" class="footer-nav-link">Услуги</a></li>
+                        <li><a href="program.html" class="footer-nav-link">Как проходит работа</a></li>
+                        <li><a href="about.html" class="footer-nav-link">О специалисте</a></li>
+                        <li><a href="meetings.html" class="footer-nav-link">Тематические встречи</a></li>
+                    </ul>
+                </div>
+                <div class="footer-specialist-card">
+                    <div class="specialist-card-content">
+                        <p class="specialist-label">Специалист:</p>
+                        <h3 class="specialist-name">Слесь Ирина Анатольевна</h3>
+                        <p class="specialist-role">Поведенческий аналитик, куратор кейсов</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ABA_pro. Все права защищены. | 🧩 Каждый пазл важен</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    // ===== ЗАГРУЗКА ВСТРЕЧ =====
+    document.addEventListener('DOMContentLoaded', function() {
+        loadMeetings();
+    });
+
+    function loadMeetings() {
+        // Получаем встречи из localStorage (в реальности будет запрос к серверу)
+        const meetingsData = localStorage.getItem('meetings');
+        const meetingsGrid = document.getElementById('meetingsGrid');
+        
+        if (meetingsData) {
+            const meetings = JSON.parse(meetingsData);
+            const upcomingMeetings = meetings.filter(m => new Date(m.date + 'T' + m.time) >= new Date());
+            
+            if (upcomingMeetings.length === 0) {
+                meetingsGrid.innerHTML = '<div class="meeting-card"><p>Пока нет запланированных встреч. Следите за обновлениями!</p></div>';
+                return;
+            }
+            
+            // Сортируем по дате
+            upcomingMeetings.sort((a, b) => new Date(a.date + 'T' + a.time) - new Date(b.date + 'T' + b.time));
+            
+            meetingsGrid.innerHTML = upcomingMeetings.map(meeting => `
+                <div class="meeting-card">
+                    <h3>${meeting.title}</h3>
+                    <div class="meeting-meta">
+                        <span class="meeting-date">📅 ${formatDate(meeting.date)}</span>
+                        <span class="meeting-time">🕐 ${meeting.time}</span>
+                    </div>
+                    ${meeting.description ? `<p class="meeting-desc">${meeting.description}</p>` : ''}
+                    ${meeting.link ? `<a href="${meeting.link}" class="btn btn-primary" target="_blank">🔗 Подключиться</a>` : ''}
+                </div>
+            `).join('');
+        } else {
+            // Демо-встречи если нет данных
+            meetingsGrid.innerHTML = `
+                <div class="meeting-card">
+                    <h3>Поведение как коммуникация</h3>
+                    <div class="meeting-meta">
+                        <span class="meeting-date">📅 10 марта 2026</span>
+                        <span class="meeting-time">🕐 19:00</span>
+                    </div>
+                    <p class="meeting-desc">Почему ребёнок ведёт себя так, а не иначе — и как понять его сигналы.</p>
+                    <a href="#" class="btn btn-primary">🔗 Подключиться</a>
+                </div>
+                <div class="meeting-card">
+                    <h3>Перенос навыков в жизнь</h3>
+                    <div class="meeting-meta">
+                        <span class="meeting-date">📅 17 марта 2026</span>
+                        <span class="meeting-time">🕐 18:30</span>
+                    </div>
+                    <p class="meeting-desc">Как сделать так, чтобы ребёнок использовал новые умения не только на занятиях.</p>
+                    <a href="#" class="btn btn-primary">🔗 Подключиться</a>
+                </div>
+            `;
+        }
+    }
+
+    function formatDate(dateString) {
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        return new Date(dateString).toLocaleDateString('ru-RU', options);
+    }
+    </script>
+</body>
+</html>
